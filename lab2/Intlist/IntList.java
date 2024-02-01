@@ -112,9 +112,8 @@ public class IntList {
             return B;
         }
         IntList L = new IntList(A.first, null);
-        IntList p = L;
-        p.rest = catenate(A.rest, B);
-        return null;
+        L.rest = catenate(A.rest, B);
+        return L;
 
 
     /**    if (A == null) {    //USING ITERATION

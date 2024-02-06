@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
 
-    public class IntNode { // USING T seems to make this line unable to use 'static'
+    private class IntNode { // USING T seems to make this line unable to use 'static'
         public IntNode prev;
         public T item;
         public IntNode next;
@@ -23,21 +23,28 @@ public class LinkedListDeque<T> {
         sentF.next = sentB;
     }
 
-//    public LinkedListDeque(LinkedListDeque other) {
+    public LinkedListDeque(LinkedListDeque other) {
 //        if ((other == null) || (other.sentF.next == other.sentB)) {
 //            new LinkedListDeque();
 //        }
 //        else {
-//            new LinkedListDeque();
-//            IntNode ptr  = sentF.next;
-//            while (other.sentF.next != null) {
-//                ptr = other.sentF.next;
-//                ptr = ptr.next;
-//                other.sentF = other.sentF.next;
-//            }
-//            sentB.prev = other.sentF;
-//        }
-//    }
+//            this = new LinkedListDeque<>();
+        size = 0;
+        sentF = new IntNode(null, null, null);
+        sentB = new IntNode(sentF, null, null);
+        sentF.next = sentB;
+        if (other.sentF.next != other.sentB) {
+            IntNode ptr  = sentF;
+            while (other.sentF.next.next != null) {
+                ptr.next = new IntNode(ptr, (T) other.sentF.next.item, null);
+                ptr = ptr.next;
+                other.sentF = other.sentF.next;
+                size += 1;
+            }
+            ptr.next = sentB;
+            sentB.prev = ptr;
+         }
+    }
 
     public void addFirst(T item) {
         size += 1;
@@ -132,16 +139,15 @@ public class LinkedListDeque<T> {
 //        System.out.println(L.sentF.item);
 //        System.out.println(L.sentF.next.item);
 //        System.out.println(L.sentF.next.next.item);
-        //System.out.println(L.sentF.next.next.next.item);
+//        System.out.println(L.sentF.next.next.next.item);
         L.printDeque();
-//        L.removeFirst();
-//        L.printDeque();
-//        L.removeLast();
-//        L.printDeque();
-//        System.out.println(L.getRecursive(1));
-//        LinkedListDeque<Integer> Copy = new LinkedListDeque<>();
-//        Copy = new LinkedListDeque<>(L);
-//        Copy.printDeque();
+        L.removeFirst();
+        L.printDeque();
+        L.removeLast();
+        L.printDeque();
+        System.out.println(L.getRecursive(1));
+        LinkedListDeque<Integer> Copy = new LinkedListDeque<>(L);
+        Copy.printDeque();
 
     }
 

@@ -49,32 +49,14 @@ public class LinkedListDeque<T> {
     public void addFirst(T item) {
         size += 1;
         sentF.next = new IntNode(sentF, item, sentF.next);
-        if (size == 1) {
-            sentB.prev = sentF.next;
-        }
+        sentF.next.prev = sentF;
+        sentF.next.next.prev = sentF.next;
     }
 
     public void addLast(T item) {
         size += 1;
         sentB.prev.next = new IntNode(sentB.prev, item, sentB);
         sentB.prev = sentB.prev.next;
-    }
-
-    public boolean isEmpty() {
-        return size == 0; // EXCELLENT CODE EXPRESSION!!!
-    }
-
-    public int size() {
-        return size;
-    }
-
-    public void printDeque() {
-        IntNode p = sentF.next;
-        for (int i = 0; i < size() - 1; i ++) { //JAVA can use ++
-            System.out.print(p.item + " ");
-            p = p.next;
-        }
-        System.out.println(p.item);
     }
 
     public T removeFirst() {
@@ -99,6 +81,24 @@ public class LinkedListDeque<T> {
         sentB.prev = sentB.prev.prev;
         sentB.prev.next = sentB;
         return item;
+    }
+
+    public boolean isEmpty() {
+        return size == 0; // EXCELLENT CODE EXPRESSION!!!
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public void printDeque() {
+        IntNode p = sentF.next;
+        for (int i = 0; i < size() - 1; i ++) { //JAVA can use ++
+            System.out.print(p.item + " ");
+            p = p.next;
+        }
+        System.out.println(p.item);
+        System.out.println();
     }
 
     public T get(int index) {
@@ -127,31 +127,6 @@ public class LinkedListDeque<T> {
         IntNode p = sentF.next;
         p = getRecurhelper(p, index);
         return p.item;
-
     }
-
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> L = new LinkedListDeque<>();
-        L.addFirst(-5);
-        L.addLast(8);
-        L.addLast(2);
-        L.addFirst(3);
-//        System.out.println(L.sentF.item);
-//        System.out.println(L.sentF.next.item);
-//        System.out.println(L.sentF.next.next.item);
-//        System.out.println(L.sentF.next.next.next.item);
-        L.printDeque();
-        L.removeFirst();
-        L.printDeque();
-        L.removeLast();
-        L.printDeque();
-        System.out.println(L.getRecursive(1));
-        LinkedListDeque<Integer> Copy = new LinkedListDeque<>(L);
-        Copy.printDeque();
-
-    }
-
-
-
 
 }

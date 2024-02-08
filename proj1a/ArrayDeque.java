@@ -95,7 +95,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (size = 0) {
+        if (size == 0) {
             return null;
         }
 
@@ -136,22 +136,5 @@ public class ArrayDeque<T> {
         }
         return array[index];
     }
-
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> x = new ArrayDeque<>();
-//        x.addFirst(1);
-//        x.addLast(2);
-//        x.addLast(3);
-//        x.addLast(4);
-//        x.addLast(5);
-//        x.addLast(6);
-//        x.printDeque();
-//        System.out.println();
-//        System.out.println(x.size());
-//        System.out.println(x.get(2));
-//        x.removeFirst();
-//        x.removeLast();
-//        x.printDeque();
-//    }
-
+    
 }

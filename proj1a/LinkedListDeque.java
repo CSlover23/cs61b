@@ -128,5 +128,4 @@ public class LinkedListDeque<T> {
         p = getRecurhelper(p, index);
         return p.item;
     }
-
 }

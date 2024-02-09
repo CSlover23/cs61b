@@ -183,13 +183,4 @@ public class ArrayDeque<T> {
         }
         System.out.println();
     }
-
-    public static void main(String[] args) {
-        ArrayDeque<Integer> arr = new ArrayDeque<>();
-       // System.out.println(arr.isEmpty());
-        arr.addFirst(0);
-        arr.printDeque();
-        arr.removeLast();
-        arr.printDeque();
-    }
 }

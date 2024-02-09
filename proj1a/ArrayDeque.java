@@ -4,7 +4,9 @@ public class ArrayDeque<T> {
     private int end;
     private T[] array;
     private int size;
-    private static final double REFACTOR = 0.25;
+    private double r;
+    private static final int REFACTOR = 2;
+    private static final double USAGEFACTOR = 0.25;
 
     public ArrayDeque() {
         array = (T[]) new Object[8];
@@ -21,6 +23,17 @@ public class ArrayDeque<T> {
 //        }
 //    }
 
+    private void resize(int capacity) {
+        T[] newArray = (T[]) new Object[capacity * REFACTOR];
+        System.arraycopy(array,  front + 1, newArray, 1, array.length - front - 1);
+        if (end != 0) {
+            System.arraycopy(array, 0, newArray, array.length - front, end);
+        }
+        front = 0;
+        end = array.length;
+        array = newArray;
+    }
+
     public void addFirst(T item) {
         array[front] = item;
         size += 1;
@@ -33,7 +46,7 @@ public class ArrayDeque<T> {
         }
 
         if (front == end) {
-            resize(array.length + 1);
+            resize(array.length);
         }
     }
 
@@ -41,11 +54,16 @@ public class ArrayDeque<T> {
         array[end] = item;
         size += 1;
 
-        if ((end == array.length - 1) || (end + 1 == front)) {
-            resize(array.length + 1);
-            return;
+        if (end == array.length - 1) {
+            end = 0;
         }
-        end += 1;
+        else {
+            end += 1;
+        }
+        if (front == end) {
+            resize(array.length);
+        }
+
     }
 
     public  boolean isEmpty() {
@@ -56,26 +74,25 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    public void printDeque() {
-        int start = front + 1;
-        if (front == array.length - 1) {
-            start = 0;
+    public void downsize() {
+        T[] newArray = (T[]) new Object[size * REFACTOR];
+        if (front <= end) {
+            System.arraycopy(array, front + 1, newArray, 1, end - front - 1);
+            end -= front;
+            front = 0;
+            array = newArray;
         }
-        for (int i = start; i < end - 1; i += 1) {
-            System.out.print(array[i] + " ");
+        else {
+            System.arraycopy(array,  front + 1, newArray, 1, array.length - front - 1);
+            System.arraycopy(array, 0, newArray, array.length - front, end - 1);
+            array = newArray;
+            front = 0;
+            end = size() + 1;
         }
-
-        System.out.print(array[end - 1]);
-        if (front >= end) {
-            for (int j = front + 1; j < array.length; j += 1) {
-                System.out.print(" " + array[j]);
-            }
-        }
-        System.out.println();
     }
 
     public T removeFirst() {
-        if (size == 0) {
+        if (isEmpty()) {
             return null;
         }
         
@@ -91,11 +108,16 @@ public class ArrayDeque<T> {
             array[front + 1] = null;
             front += 1;
         }
+
+        r = size * 1.00 / array.length;
+        if (r <= USAGEFACTOR) {
+            downsize();
+        }
         return item;
     }
 
     public T removeLast() {
-        if (size == 0) {
+        if (isEmpty()) {
             return null;
         }
 
@@ -111,30 +133,52 @@ public class ArrayDeque<T> {
             array[end - 1] = null;
             end -= 1;
         }
+
+        r = size * 1.00 / array.length;
+        if (r <= USAGEFACTOR) {
+            downsize();
+        }
         return item;
 
     }
 
-    private void resize(int capacity) {
-        T[] newArray = (T[]) new Object[capacity];
-        System.arraycopy(array, 0, newArray, 0, end);
-        if (end <= front) {
-            System.arraycopy(array, front + 1, newArray, front + 1 + capacity - array.length, array.length - front - 1);
-            front += capacity - array.length;
-        }
-        array = newArray;
-    }
-
     public T get(int index) {
-        if (index < 0 || (index >= array.length)) {
-            System.out.print("Beyond range!");
+        if (index < 0 || index >= size) {
             return null;
         }
-        if (index > end - 1 && (index < front + 1) && (front >= end)) {
-            System.out.print("Beyond range!");
-            return null;
+        if (front <= end) {
+            return array[index + front + 1];
         }
-        return array[index];
+        else {
+            if ((front + 1 + index) > array.length - 1) {
+                return array[index + front + 1 - array.length];
+            }
+            return array[index + front + 1];
+        }
     }
 
+    public void printDeque() {
+        if (front <= end) {
+            for (int i = front + 1; i < end; i += 1) {
+                if (i == end - 1) {
+                    System.out.print(array[i]);
+                    continue;
+                }
+                System.out.print(array[i] + " ");
+            }
+        }
+        else {
+            for (int i = front + 1; i < array.length; i += 1) {
+                if (i == array.length - 1) {
+                    System.out.print(array[i]);
+                    continue;
+                }
+                System.out.print(array[i] + " ");
+            }
+            for (int j = 0; j < end; j += 1) {
+                System.out.print(" " + array[j]);
+            }
+        }
+        System.out.println();
+    }
 }

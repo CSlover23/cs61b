@@ -74,7 +74,7 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    public void downsize() {
+    private void downsize() {
         T[] newArray = (T[]) new Object[size * REFACTOR];
         if (front <= end) {
             System.arraycopy(array, front + 1, newArray, 1, end - front - 1);
@@ -109,9 +109,11 @@ public class ArrayDeque<T> {
             front += 1;
         }
 
-        r = size * 1.00 / array.length;
-        if (r <= USAGEFACTOR) {
-            downsize();
+        if (size >= 16) {
+            r = size * 1.00 / array.length;
+            if (r <= USAGEFACTOR) {
+                downsize();
+            }
         }
         return item;
     }
@@ -133,13 +135,13 @@ public class ArrayDeque<T> {
             array[end - 1] = null;
             end -= 1;
         }
-
-        r = size * 1.00 / array.length;
-        if (r <= USAGEFACTOR) {
-            downsize();
+        if (size >= 16) {
+            r = size * 1.00 / array.length;
+            if (r <= USAGEFACTOR) {
+                downsize();
+            }
         }
         return item;
-
     }
 
     public T get(int index) {
@@ -180,5 +182,14 @@ public class ArrayDeque<T> {
             }
         }
         System.out.println();
+    }
+
+    public static void main(String[] args) {
+        ArrayDeque<Integer> arr = new ArrayDeque<>();
+       // System.out.println(arr.isEmpty());
+        arr.addFirst(0);
+        arr.printDeque();
+        arr.removeLast();
+        arr.printDeque();
     }
 }

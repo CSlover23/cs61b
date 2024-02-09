@@ -19,7 +19,8 @@ public class ArrayDeque<T> {
 //        array = (T[]) new Object[other.array.length];
 //        System.arraycopy(other.array, 0, array, 0, end);
 //        if (other.front >= other.end) {
-//            System.arraycopy(other.array, front + 1, array, front + 1, other.array.length - front - 1);
+//            System.arraycopy(other.array, front + 1, array,
+//               front + 1, other.array.length - front - 1);
 //        }
 //    }
 
@@ -40,8 +41,7 @@ public class ArrayDeque<T> {
 
         if (front == 0) {
             front = array.length - 1;
-        }
-        else {
+        } else {
             front -= 1;
         }
 
@@ -56,8 +56,7 @@ public class ArrayDeque<T> {
 
         if (end == array.length - 1) {
             end = 0;
-        }
-        else {
+        } else {
             end += 1;
         }
         if (front == end) {
@@ -81,8 +80,7 @@ public class ArrayDeque<T> {
             end -= front;
             front = 0;
             array = newArray;
-        }
-        else {
+        } else {
             System.arraycopy(array,  front + 1, newArray, 1, array.length - front - 1);
             System.arraycopy(array, 0, newArray, array.length - front, end - 1);
             array = newArray;
@@ -102,8 +100,7 @@ public class ArrayDeque<T> {
             item = array[0];
             array[0] = null;
             front = 0;
-        }
-        else {
+        } else {
             item = array[front + 1];
             array[front + 1] = null;
             front += 1;
@@ -129,8 +126,7 @@ public class ArrayDeque<T> {
             item = array[array.length - 1];
             array[array.length - 1] = null;
             end = array.length - 1;
-        }
-        else {
+        } else {
             item = array[end - 1];
             array[end - 1] = null;
             end -= 1;
@@ -150,8 +146,7 @@ public class ArrayDeque<T> {
         }
         if (front <= end) {
             return array[index + front + 1];
-        }
-        else {
+        } else {
             if ((front + 1 + index) > array.length - 1) {
                 return array[index + front + 1 - array.length];
             }
@@ -168,8 +163,7 @@ public class ArrayDeque<T> {
                 }
                 System.out.print(array[i] + " ");
             }
-        }
-        else {
+        } else {
             for (int i = front + 1; i < array.length; i += 1) {
                 if (i == array.length - 1) {
                     System.out.print(array[i]);

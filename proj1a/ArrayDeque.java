@@ -7,19 +7,19 @@ public class ArrayDeque<T> {
     private static final double REFACTOR = 0.25;
 
     public ArrayDeque() {
-        array = (T[]) new Object[100];
+        array = (T[]) new Object[8];
         front = 0;
         end = 1;
         size = 0;
     }
 
-    public ArrayDeque(ArrayDeque other) {
-        array = (T[]) new Object[other.array.length];
-        System.arraycopy(other.array, 0, array, 0, end);
-        if (other.front >= other.end) {
-            System.arraycopy(other.array, front + 1, array, front + 1, other.array.length - front - 1);
-        }
-    }
+//    public ArrayDeque(ArrayDeque other) {
+//        array = (T[]) new Object[other.array.length];
+//        System.arraycopy(other.array, 0, array, 0, end);
+//        if (other.front >= other.end) {
+//            System.arraycopy(other.array, front + 1, array, front + 1, other.array.length - front - 1);
+//        }
+//    }
 
     public void addFirst(T item) {
         array[front] = item;
@@ -136,5 +136,5 @@ public class ArrayDeque<T> {
         }
         return array[index];
     }
-    
+
 }

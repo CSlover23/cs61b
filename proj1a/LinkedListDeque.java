@@ -1,9 +1,8 @@
 public class LinkedListDeque<T> {
-
     private class IntNode { // USING T seems to make this line unable to use 'static'
-        public IntNode prev;
-        public T item;
-        public IntNode next;
+        private IntNode prev;
+        private T item;
+        private IntNode next;
 
         public IntNode(IntNode prev, T item, IntNode next) {
             this.prev = prev;
@@ -23,28 +22,28 @@ public class LinkedListDeque<T> {
         sentF.next = sentB;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-//        if ((other == null) || (other.sentF.next == other.sentB)) {
-//            new LinkedListDeque();
+//    public LinkedListDeque(LinkedListDeque other) {
+////        if ((other == null) || (other.sentF.next == other.sentB)) {
+////            new LinkedListDeque();
+////        }
+////        else {
+////            this = new LinkedListDeque<>();
+//        size = 0;
+//        sentF = new IntNode(null, null, null);
+//        sentB = new IntNode(sentF, null, null);
+//        sentF.next = sentB;
+//        if (other.sentF.next != other.sentB) {
+//            IntNode ptr  = sentF;
+//            while (other.sentF.next.next != null) {
+//                ptr.next = new IntNode(ptr, (T) other.sentF.next.item, null);
+//                ptr = ptr.next;
+//                other.sentF = other.sentF.next;
+//                size += 1;
+//            }
+//            ptr.next = sentB;
+//            sentB.prev = ptr;
 //        }
-//        else {
-//            this = new LinkedListDeque<>();
-        size = 0;
-        sentF = new IntNode(null, null, null);
-        sentB = new IntNode(sentF, null, null);
-        sentF.next = sentB;
-        if (other.sentF.next != other.sentB) {
-            IntNode ptr  = sentF;
-            while (other.sentF.next.next != null) {
-                ptr.next = new IntNode(ptr, (T) other.sentF.next.item, null);
-                ptr = ptr.next;
-                other.sentF = other.sentF.next;
-                size += 1;
-            }
-            ptr.next = sentB;
-            sentB.prev = ptr;
-         }
-    }
+//    }
 
     public void addFirst(T item) {
         size += 1;
@@ -93,7 +92,7 @@ public class LinkedListDeque<T> {
 
     public void printDeque() {
         IntNode p = sentF.next;
-        for (int i = 0; i < size() - 1; i ++) { //JAVA can use ++
+        for (int i = 0; i < size() - 1; i += 1) { //JAVA can use ++
             System.out.print(p.item + " ");
             p = p.next;
         }
@@ -107,7 +106,7 @@ public class LinkedListDeque<T> {
         }
 
         IntNode p = sentF.next;
-        for (int i = 0; i < index; i ++) {
+        for (int i = 0; i < index; i += 1) {
             p = p.next;
         }
         return p.item;
@@ -120,7 +119,7 @@ public class LinkedListDeque<T> {
         return getRecurhelper(p.next, index - 1);
     }
     public T getRecursive(int index) {
-        if ((index < 0) || (index > size -1)) {
+        if ((index < 0) || (index > size - 1)) {
             return null;
         }
 

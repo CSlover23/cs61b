@@ -7,6 +7,7 @@ public class ArrayDeque<T> {
     private double r;
     private static final int REFACTOR = 2;
     private static final double USAGEFACTOR = 0.25;
+    private static final int MINBLOCK = 16; // min array length for consider usage ratio
 
     public ArrayDeque() {
         array = (T[]) new Object[8];
@@ -15,14 +16,14 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-//    public ArrayDeque(ArrayDeque other) {
-//        array = (T[]) new Object[other.array.length];
-//        System.arraycopy(other.array, 0, array, 0, end);
-//        if (other.front >= other.end) {
-//            System.arraycopy(other.array, front + 1, array,
-//               front + 1, other.array.length - front - 1);
-//        }
-//    }
+    //public ArrayDeque(ArrayDeque other) {
+    //  array = (T[]) new Object[other.array.length];
+    //  System.arraycopy(other.array, 0, array, 0, end);
+    //  if (other.front >= other.end) {
+    //      System.arraycopy(other.array, front + 1, array,
+    //         front + 1, other.array.length - front - 1);
+    //   }
+    //}
 
     private void resize(int capacity) {
         T[] newArray = (T[]) new Object[capacity * REFACTOR];
@@ -106,7 +107,7 @@ public class ArrayDeque<T> {
             front += 1;
         }
 
-        if (size >= 16) {
+        if (size >= MINBLOCK) {
             r = size * 1.00 / array.length;
             if (r <= USAGEFACTOR) {
                 downsize();
@@ -131,7 +132,7 @@ public class ArrayDeque<T> {
             array[end - 1] = null;
             end -= 1;
         }
-        if (size >= 16) {
+        if (size >= MINBLOCK) {
             r = size * 1.00 / array.length;
             if (r <= USAGEFACTOR) {
                 downsize();

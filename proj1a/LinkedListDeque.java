@@ -22,29 +22,29 @@ public class LinkedListDeque<T> {
         sentF.next = sentB;
     }
 
-//    public LinkedListDeque(LinkedListDeque other) {
-////        if ((other == null) || (other.sentF.next == other.sentB)) {
-////            new LinkedListDeque();
-////        }
-////        else {
-////            this = new LinkedListDeque<>();
-//        size = 0;
-//        sentF = new IntNode(null, null, null);
-//        sentB = new IntNode(sentF, null, null);
-//        sentF.next = sentB;
-//        if (other.sentF.next != other.sentB) {
-//            IntNode ptr  = sentF;
-//            while (other.sentF.next.next != null) {
-//                ptr.next = new IntNode(ptr,
-//                     (T) other.sentF.next.item, null);
-//                ptr = ptr.next;
-//                other.sentF = other.sentF.next;
-//                size += 1;
-//            }
-//            ptr.next = sentB;
-//            sentB.prev = ptr;
-//        }
-//    }
+    //    public LinkedListDeque(LinkedListDeque other) {
+    //        if ((other == null) || (other.sentF.next == other.sentB)) {
+    //            new LinkedListDeque();
+    //        }
+    //        else {
+    //            this = new LinkedListDeque<>();
+    //        size = 0;
+    //        sentF = new IntNode(null, null, null);
+    //        sentB = new IntNode(sentF, null, null);
+    //        sentF.next = sentB;
+    //        if (other.sentF.next != other.sentB) {
+    //            IntNode ptr  = sentF;
+    //            while (other.sentF.next.next != null) {
+    //                ptr.next = new IntNode(ptr,
+    //                     (T) other.sentF.next.item, null);
+    //                ptr = ptr.next;
+    //                other.sentF = other.sentF.next;
+    //                size += 1;
+    //            }
+    //            ptr.next = sentB;
+    //            sentB.prev = ptr;
+    //        }
+    //    }
 
     public void addFirst(T item) {
         size += 1;

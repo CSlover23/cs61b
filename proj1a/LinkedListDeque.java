@@ -36,7 +36,7 @@ public class LinkedListDeque<T> {
 //            IntNode ptr  = sentF;
 //            while (other.sentF.next.next != null) {
 //                ptr.next = new IntNode(ptr,
-//                   (T) other.sentF.next.item, null);
+//                     (T) other.sentF.next.item, null);
 //                ptr = ptr.next;
 //                other.sentF = other.sentF.next;
 //                size += 1;
@@ -129,3 +129,4 @@ public class LinkedListDeque<T> {
         return p.item;
     }
 }
+

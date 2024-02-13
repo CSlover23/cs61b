@@ -62,7 +62,7 @@ public class LinkedListDequeTest {
 
     /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
     static final int TESTNUM = 10; //add this piece of code for lld1.addFirst(TESTNYM);
-    public static void addRemoveTest() {git 
+    public static void addRemoveTest() {
 
         System.out.println("Running add/remove test.");
 

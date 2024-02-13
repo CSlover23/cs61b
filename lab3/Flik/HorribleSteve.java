@@ -5,7 +5,7 @@ public class HorribleSteve {
             if (!Flik.isSameNumber(i, j)) {
                 break; // break exits the for loop!
             }
-        }
+        } //WRONG ANSWER MAY BE BECAUSE LIBRARY USES Interger WHILE int HERE
         System.out.println("i is " + i);
     }
 }

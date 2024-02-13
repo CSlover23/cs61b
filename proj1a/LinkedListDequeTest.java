@@ -35,7 +35,6 @@ public class LinkedListDequeTest {
       * && is the "and" operation. */
     public static void addIsEmptySizeTest() {
         System.out.println("Running add/isEmpty/Size test.");
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
@@ -63,17 +62,17 @@ public class LinkedListDequeTest {
 
     /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
     static final int TESTNUM = 10; //add this piece of code for lld1.addFirst(TESTNYM);
-    public static void addRemoveTest() {
+    public static void addRemoveTest() {git 
 
         System.out.println("Running add/remove test.");
 
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
         // should be empty
         boolean passed = checkEmpty(true, lld1.isEmpty());
 
-        lld1.addFirst(TESTNUM); //orginal version is lld1.addFirst(10) but it reports magic number error!
+        lld1.addFirst(TESTNUM); /* orginal version is lld1.addFirst(10) but it reports
+                               magic number error! */
         // should not be empty
         passed = checkEmpty(false, lld1.isEmpty()) && passed;
 

@@ -176,6 +176,5 @@ public class ArrayDeque<T> {
                 System.out.print(" " + array[j]);
             }
         }
-        System.out.println();
     }
 }

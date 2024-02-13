@@ -98,7 +98,6 @@ public class LinkedListDeque<T> {
             p = p.next;
         }
         System.out.println(p.item);
-        System.out.println();
     }
 
     public T get(int index) {

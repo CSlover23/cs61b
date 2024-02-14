@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
  * Isn't this solution kinda... cheating? Yes.
  */
 public class LinkedListDeque<T> extends LinkedList<T> implements Deque<T> {
+
+    @Override
     public void printDeque() {
         System.out.println("dummy");
     }
@@ -13,6 +15,7 @@ public class LinkedListDeque<T> extends LinkedList<T> implements Deque<T> {
         return get(i);
     }
 
+    @Override
     public T removeFirst() {
         try {
             return super.removeFirst();
@@ -21,6 +24,7 @@ public class LinkedListDeque<T> extends LinkedList<T> implements Deque<T> {
         }
     }
 
+    @Override
     public T removeLast() {
         try {
             return super.removeLast();

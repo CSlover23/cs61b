@@ -4,6 +4,7 @@ public class OffByN implements CharacterComparator {
         this.N = N;
     }
 
+    @Override
     public boolean equalChars(char x, char y) {
         return (x - y == N) || (y - x == N);
     }

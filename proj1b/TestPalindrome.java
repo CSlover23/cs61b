@@ -27,5 +27,7 @@ public class TestPalindrome {
     public void testPalindromeNew() {
         assertTrue(palindrome.isPalindrome("flake", cc));
         assertFalse(palindrome.isPalindrome("an", cc));
+        assertFalse(palindrome.isPalindrome("aA", cc));
+        assertTrue(palindrome.isPalindrome("%ab&", cc));
     }
 }

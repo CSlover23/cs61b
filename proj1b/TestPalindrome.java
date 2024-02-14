@@ -24,7 +24,6 @@ public class TestPalindrome {
     }
 
     @Test
-
     public void testPalindromeNew() {
         assertTrue(palindrome.isPalindrome("flake", cc));
         assertFalse(palindrome.isPalindrome("an", cc));

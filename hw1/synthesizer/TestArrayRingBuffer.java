@@ -1,19 +1,17 @@
 package synthesizer;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/** Tests the ArrayRingBuffer class.
- *  @author Josh Hug
- */
-
 public class TestArrayRingBuffer {
+
+    ArrayRingBuffer<Integer> tester = new ArrayRingBuffer<>(8);
+    //tester.enqueue(8); //If you call here, then you will be wrong but why!!!
+
     @Test
-    public void someTest() {
-        //ArrayRingBuffer arb = new ArrayRingBuffer(10);
+    public void testCapacity() {;
+        tester.enqueue(8);
+        assertEquals(tester.capacity(), 8);
     }
 
-    /** Calls tests for ArrayRingBuffer. */
-    public static void main(String[] args) {
-        jh61b.junit.textui.runClasses(TestArrayRingBuffer.class);
-    }
-} 
+}
